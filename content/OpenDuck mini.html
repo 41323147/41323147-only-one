@@ -2,6 +2,7 @@
         <head>
         <title>cad2025_hw</title>
         <meta charset="utf-8">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -95,6 +96,7 @@ img.add_border {
 </head>
 <body>
 <div class='container'><nav>
+        
     <div class="site-wrap">
 
     <div class="site-mobile-menu">
@@ -140,4 +142,68 @@ img.add_border {
           </div>
           
         </header>
-    </nav><section><h1>SMap</h1><div id="tipue_search_content"></div><ul><li><a href='About.html'>About</a><li><a href='W3.html'>W3</a><ul><li><a href='Ans.html'>Ans</a></li></ul><li><a href='W7.html'>W7</a><ul><li><a href='5-bar Linkage Plotter.html'>5-bar Linkage Plotter</a><li><a href='OpenDuck mini.html'>OpenDuck mini</a></li></ul><li><a href='W10.html'>W10</a><li><a href='W14.html'>W14</a><li><a href='W17.html'>W17</a><li><a href='W18.html'>W18</a></li></ul></section></div></body></html>
+    <div id="tipue_search_content">5-bar Linkage Plotter << <a href='5-bar Linkage Plotter.html'>Previous</a> <a href='W10.html'>Next</a> >> W10<br /><h1>OpenDuck mini</h1>
+<h4><span>零件設計: 按照老師的圖檔加以修改。</span><br/><span></span></h4>
+<p><span>如何切割:</span></p>
+<p>   1.先建立整體設計草圖~且在同個Part Studio繪出完整機構，才能方便確認整體運動關係。</p>
+<p>   2.確認分割位置~依據機構的運動需求和組配關係，決定從何分割零件避免重疊或出錯。</p>
+<p>   3.使用Split Part功能~透過平面或實體作為基準，將原本模型機構分割成多個獨立零件，形成能獨立編輯零件。</p>
+<p>   4.將各個零組件給予名稱方便後續組裝辨識。</p>
+<p>   5.建立Assembly組裝檔~將分割後零件匯入並且進行裝配和模擬。 確認連趕能運動且不干涉。</p>
+<p><span>為何要切:</span></p>
+<p><span>   原因:1.能使結構清晰化方便修改和管理且模擬運動時需分開在Assembly中進行旋轉等運動模擬和分析 2.避免干涉錯誤可能在零件中有碰撞或過度干涉狀況發生須確保整體能順利運作 3.方便修改、若後續零件尺寸等不合需重新調整，能提高設計靈活度跟效率。</span><br/><span></span></p>
+<p></p>
+<p>控制系統設計與動態模擬 :我們使用webot來進行動態模擬，這是我們匯入的經過:</p>
+<p>1.將機器人零組件轉成stl檔以便匯入webot<br/><img alt="" height="369" src="https://41323147.github.io/cad2025_team/images/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-10-30%20201812.png" width="800"/></p>
+<p>2.我們先在世界新增一個robot並且在children再接續新增Solid和Shape最後在裡面的mash把所匯出的stl檔案匯進url裡面<img alt="" height="449" src="https://41323147.github.io/cad2025_team/images/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-10-30%20202430.png" width="800"/></p>
+<p>3.由於我們在將零件檔匯入時遇到了機器人關節處需要將連動的零組件合成一個檔，且會發生零組件無法作動與移動，導致後續無法如期完成模擬，後續我們會持續完成並解決。</p><br />5-bar Linkage Plotter << <a href='5-bar Linkage Plotter.html'>Previous</a> <a href='W10.html'>Next</a> >> W10</div>
+        
+    <!-- footer -->
+      <div class="container">
+        <div class="row pt-3 mx-auto">
+            <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+        </div>
+      </div>
+    <!-- for footer -->
+    
+        </div> <!-- for site wrap -->
+            <!-- <script src="../cmsimde/static/chimper/js/jquery-3.3.1.min.js"></script> -->
+            <script src="../cmsimde/static/chimper/js/jquery-migrate-3.0.1.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery-ui.js"></script>
+            <script src="../cmsimde/static/chimper/js/popper.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/bootstrap.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/owl.carousel.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.stellar.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.countdown.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.magnific-popup.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/bootstrap-datepicker.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/aos.js"></script>
+            <!--
+            <script src="../cmsimde/static/chimper/js/typed.js"></script>
+                    <script>
+                    var typed = new Typed('.typed-words', {
+                    strings: ["Web Apps"," WordPress"," Mobile Apps"],
+                    typeSpeed: 80,
+                    backSpeed: 80,
+                    backDelay: 4000,
+                    startDelay: 1000,
+                    loop: true,
+                    showCursor: true
+                    });
+                    </script>
+            -->
+            <script src="../cmsimde/static/chimper/js/main.js"></script>
+        
+<!-- 啟用 LaTeX equations 編輯 -->
+  <!-- <script>
+  MathJax = {
+    tex: {inlineMath: [['$', '$'], ['\(', '\)']]}
+  };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>-->
+    </body></html>
+        

@@ -16,7 +16,7 @@
 <p><span>w9<span> </span></span>期中自評、<span>w18<span> </span></span>期末自評</p>
 <h1>W3</h1>
 <p><span>用什麼套件完成</span><span> <a href="https://youtu.be/iOLFP90DneY">5-bar Linkage Plotter</a> </span><span>與</span><span> <a href="https://mde.tw/cad2025/content/OpenDuck.html">Openduck mini</a> </span><span>零組件設計繪圖？</span><span> <a href="https://solvespace.com/">Solvespace</a>, <a href="https://plm.sw.siemens.com/en-US/nx/cad-online/">Siemens NX</a>, <a href="https://www.onshape.com/en/">Onshape</a> </span><span>或其他？各有什麼優缺點？</span><span><span> </span>(<a href="https://mde.tw/cad2025/downloads/plotter.7z">plotter.7z</a>, <a href="https://mde.tw/cad_demo/downloads/open_duck_mini.7z">open_duck_mini.7z</a>)</span>軟體套件分析<span> :</span></p>
-<h2>Ans:</h2>
+<h2>Ans</h2>
 <p>軟體套件分析<span> :</span><span></span></p>
 <p><span>Solvespace   <span> </span></span>優點<span>:</span>適合快速建模且機構連桿模擬簡單適合基本連桿運動學分析。</p>
 <p><span>                     <span> </span></span>缺點<span>:</span>功能基礎且缺乏協作功能不適合多人專案和大型專案不友善。</p>
@@ -31,7 +31,40 @@
 <li><span></span>效率<span>: 5-bar linkage<span> </span></span>主要是機構模擬，<span>Onshape<span> </span></span>的約束與動畫功能剛好能滿足需求。</li>
 </ol>
 <p>我們使用Onshape繪製出plotclock(繪圖儀)<br/>立體視圖:</p>
-<p><img alt="" height="222" src="https://41323147.github.io/cad2025_team/images/2025-09-25_224038.png" width="468"/><img alt="" height="221" src="https://41323147.github.io/cad2025_team/images/2025-09-25_223903.png" width="467"/></p><h1>W7</h1>
+<p><img alt="" height="222" src="https://41323147.github.io/cad2025_team/images/2025-09-25_224038.png" width="468"/><img alt="" height="221" src="https://41323147.github.io/cad2025_team/images/2025-09-25_223903.png" width="467"/></p>
+<h1>W7</h1>
+<p><br/><span>(2a 採 Youtube 影片簡報</span><span>):</span><span> </span><a href="https://youtu.be/iOLFP90DneY">5-bar Linkage Plotter</a><span> </span><span>與</span><span> </span><a href="https://mde.tw/cad2025/content/OpenDuck.html">Openduck mini</a><span> 零組件設計繪製完成之後，如何切割零件? 為何要切割零件？ 如何利用</span><span> </span><a href="https://cyberbotics.com/">Webots</a><span> </span><span>進行後續的控制系統設計與動態模擬 (Dynamic Simulation)？(</span><a href="https://mde.tw/cad2025/downloads/plotter_project.7z">plotter_project.7z</a><span>)</span></p>
+<h3>5-bar Linkage Plotter</h3>
+<p>如何切割:</p>
+<p>   1.先建立整體設計草圖~且在同個Part Studio繪出完整機構，才能方便確認整體運動關係。</p>
+<p>   2.確認分割位置~依據機構的運動需求和組配關係，決定從何分割零件避免重疊或出錯。</p>
+<p>   3.使用Split Part功能~透過平面或實體作為基準，將原本模型機構分割成多個獨立零件，形成能獨立編輯零件。</p>
+<p>   4.將各個零組件給予名稱方便後續組裝辨識。</p>
+<p>   5.建立Assembly組裝檔~將分割後零件匯入並且進行裝配和模擬。 確認連趕能運動且不干涉。</p>
+<p>為何要切:</p>
+<p>   原因:1.能使結構清晰化方便修改和管理且模擬運動時需分開在Assembly中進行旋轉等運動模擬和分析 2.避免干涉錯誤可能在零件中有碰撞或過度干涉狀況發生須確保整體能順利運作 3.方便修改、若後續零件尺寸等不合需重新調整，能提高設計靈活度跟效率。</p>
+<p><br/>控制系統設計與動態模擬:</p>
+<p>   使用webots來後續的模擬與控制，Webots 是一款開源、多平台的機器人模擬軟體，專門用於機器人的建模、編程和動態模擬。</p>
+<p>   使用webots以下節點進行模擬</p>
+<ul>
+<li>剛體（Solid）： 在 Webots 中，機器人和環境中的大部分物件都被定義為剛體 (<code>Solid</code><span> </span>Node)。動態模擬的基礎就是計算這些剛體在外力作用下的運動。需要為剛體定義其幾何形狀、碰撞範圍<span> </span>(<code>boundingObject</code>) 和物理特性<span> </span>(<code>physics</code><span> </span>節點)，例如質量、慣性矩、摩擦係數等。</li>
+</ul>
+<ul>
+<li>關節（Joints）：<span> </span>機器人的各個部分之間通過關節 (<code>Joint</code><span> </span>Node) 連接，例如旋轉關節 (<code>HingeJoint</code>) 或線性關節 (<code>SliderJoint</code>)。這些關節限制了剛體之間的相對運動，是模擬機器人運動的關鍵。</li>
+</ul>
+<p>   以下是操作步驟：</p>
+<p>   1.首先將所有零件獨立分開轉成stl檔</p>
+<p><img caption="false" height="470" src="https://41323147.github.io/cad2025_team/images/w7-1.png" width="800"/></p>
+<p>   2.在webots新建一個世界，在主節點robot下建立多個solid，並使用shape —&gt; mesh將零件stl檔案匯入</p>
+<p><img caption="false" height="539" src="https://41323147.github.io/cad2025_team/images/w7-2.png" width="800"/></p>
+<p>   3.找出連桿零件並命名為a1、a2、b1、b2，在robot主節點下建立hingjoint節點，將連桿的solid剪貼到<span>hingjoint的endpoint子節點</span></p>
+<p><span><img alt="" height="434" src="https://41323147.github.io/cad2025_team/images/w7-3.png" width="400"/></span></p>
+<p>   4.五連桿的a2<span>、b2是被動桿，所以將a2<span>、b2整個剪貼到a1、b1的子節點下，這樣被動桿就會跟主動桿一起連動</span></span></p>
+<p><img alt="" height="433" src="https://41323147.github.io/cad2025_team/images/w7-4.png" width="400"/></p>
+<p>   5.因為五連桿機構是閉合的，所以在被動桿a2的子節點下新增hingjoint，並在endpoint新增solidreference閉合節點，將b2放入，這樣a2和b2就會進行連動</p>
+<p><img alt="" height="433" src="https://41323147.github.io/cad2025_team/images/w7-5.png" width="400"/></p>
+<p><span> </span></p>
+<h2>OpenDuck mini</h2>
 <h1>W10</h1>
 <h1>W14</h1>
 <h1>W17</h1>

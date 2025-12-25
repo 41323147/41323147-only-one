@@ -2,6 +2,7 @@
         <head>
         <title>cad2025_hw</title>
         <meta charset="utf-8">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -95,6 +96,7 @@ img.add_border {
 </head>
 <body>
 <div class='container'><nav>
+        
     <div class="site-wrap">
 
     <div class="site-mobile-menu">
@@ -140,4 +142,84 @@ img.add_border {
           </div>
           
         </header>
-    </nav><section><h1>SMap</h1><div id="tipue_search_content"></div><ul><li><a href='About.html'>About</a><li><a href='W3.html'>W3</a><ul><li><a href='Ans.html'>Ans</a></li></ul><li><a href='W7.html'>W7</a><ul><li><a href='5-bar Linkage Plotter.html'>5-bar Linkage Plotter</a><li><a href='OpenDuck mini.html'>OpenDuck mini</a></li></ul><li><a href='W10.html'>W10</a><li><a href='W14.html'>W14</a><li><a href='W17.html'>W17</a><li><a href='W18.html'>W18</a></li></ul></section></div></body></html>
+    <div id="tipue_search_content">W7 << <a href='W7.html'>Previous</a> <a href='OpenDuck mini.html'>Next</a> >> OpenDuck mini<br /><h1>5-bar Linkage Plotter</h1>
+<p>如何切割:</p>
+<p>   1.先建立整體設計草圖~且在同個Part Studio繪出完整機構，才能方便確認整體運動關係。</p>
+<p>   2.確認分割位置~依據機構的運動需求和組配關係，決定從何分割零件避免重疊或出錯。</p>
+<p>   3.使用Split Part功能~透過平面或實體作為基準，將原本模型機構分割成多個獨立零件，形成能獨立編輯零件。</p>
+<p>   4.將各個零組件給予名稱方便後續組裝辨識。</p>
+<p>   5.建立Assembly組裝檔~將分割後零件匯入並且進行裝配和模擬。 確認連趕能運動且不干涉。</p>
+<p>為何要切:</p>
+<p>   原因:1.能使結構清晰化方便修改和管理且模擬運動時需分開在Assembly中進行旋轉等運動模擬和分析 2.避免干涉錯誤可能在零件中有碰撞或過度干涉狀況發生須確保整體能順利運作 3.方便修改、若後續零件尺寸等不合需重新調整，能提高設計靈活度跟效率。</p>
+<p><br/>控制系統設計與動態模擬:</p>
+<p>   使用webots來後續的模擬與控制，Webots 是一款開源、多平台的機器人模擬軟體，專門用於機器人的建模、編程和動態模擬。</p>
+<p>   使用webots以下節點進行模擬</p>
+<ul>
+<li>剛體（Solid）： 在 Webots 中，機器人和環境中的大部分物件都被定義為剛體 (<code>Solid</code><span> </span>Node)。動態模擬的基礎就是計算這些剛體在外力作用下的運動。需要為剛體定義其幾何形狀、碰撞範圍<span> </span>(<code>boundingObject</code>) 和物理特性<span> </span>(<code>physics</code><span> </span>節點)，例如質量、慣性矩、摩擦係數等。</li>
+</ul>
+<ul>
+<li>關節（Joints）：<span> </span>機器人的各個部分之間通過關節 (<code>Joint</code><span> </span>Node) 連接，例如旋轉關節 (<code>HingeJoint</code>) 或線性關節 (<code>SliderJoint</code>)。這些關節限制了剛體之間的相對運動，是模擬機器人運動的關鍵。</li>
+</ul>
+<p>   以下是操作步驟：</p>
+<p>   1.首先將所有零件獨立分開轉成stl檔</p>
+<p><img caption="false" height="470" src="https://41323147.github.io/cad2025_team/images/w7-1.png" width="800"/></p>
+<p>   2.在webots新建一個世界，在主節點robot下建立多個solid，並使用shape —&gt; mesh將零件stl檔案匯入</p>
+<p><img caption="false" height="539" src="https://41323147.github.io/cad2025_team/images/w7-2.png" width="800"/></p>
+<p>   3.找出連桿零件並命名為a1、a2、b1、b2，在robot主節點下建立hingjoint節點，將連桿的solid剪貼到<span>hingjoint的endpoint子節點</span></p>
+<p><span><img alt="" height="434" src="https://41323147.github.io/cad2025_team/images/w7-3.png" width="400"/></span></p>
+<p>   4.五連桿的a2<span>、b2是被動桿，所以將a2<span>、b2整個剪貼到a1、b1的子節點下，這樣被動桿就會跟主動桿一起連動</span></span></p>
+<p><img alt="" height="433" src="https://41323147.github.io/cad2025_team/images/w7-4.png" width="400"/></p>
+<p>   5.因為五連桿機構是閉合的，所以在被動桿a2的子節點下新增hingjoint，並在endpoint新增solidreference閉合節點，將b2放入，這樣a2和b2就會進行連動</p>
+<p><img alt="" height="433" src="https://41323147.github.io/cad2025_team/images/w7-5.png" width="400"/></p>
+<p><span> </span></p>
+<br />W7 << <a href='W7.html'>Previous</a> <a href='OpenDuck mini.html'>Next</a> >> OpenDuck mini</div>
+        
+    <!-- footer -->
+      <div class="container">
+        <div class="row pt-3 mx-auto">
+            <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+        </div>
+      </div>
+    <!-- for footer -->
+    
+        </div> <!-- for site wrap -->
+            <!-- <script src="../cmsimde/static/chimper/js/jquery-3.3.1.min.js"></script> -->
+            <script src="../cmsimde/static/chimper/js/jquery-migrate-3.0.1.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery-ui.js"></script>
+            <script src="../cmsimde/static/chimper/js/popper.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/bootstrap.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/owl.carousel.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.stellar.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.countdown.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/jquery.magnific-popup.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/bootstrap-datepicker.min.js"></script>
+            <script src="../cmsimde/static/chimper/js/aos.js"></script>
+            <!--
+            <script src="../cmsimde/static/chimper/js/typed.js"></script>
+                    <script>
+                    var typed = new Typed('.typed-words', {
+                    strings: ["Web Apps"," WordPress"," Mobile Apps"],
+                    typeSpeed: 80,
+                    backSpeed: 80,
+                    backDelay: 4000,
+                    startDelay: 1000,
+                    loop: true,
+                    showCursor: true
+                    });
+                    </script>
+            -->
+            <script src="../cmsimde/static/chimper/js/main.js"></script>
+        
+<!-- 啟用 LaTeX equations 編輯 -->
+  <!-- <script>
+  MathJax = {
+    tex: {inlineMath: [['$', '$'], ['\(', '\)']]}
+  };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>-->
+    </body></html>
+        
