@@ -142,23 +142,45 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">W3 << <a href='W3.html'>Previous</a> <a href='W7.html'>Next</a> >> W7<br /><h1>Ans</h1>
-<p>軟體套件分析<span> :</span><span></span></p>
-<p><span>Solvespace   <span> </span></span>優點<span>:</span>適合快速建模且機構連桿模擬簡單適合基本連桿運動學分析。</p>
-<p><span>                     <span> </span></span>缺點<span>:</span>功能基礎且缺乏協作功能不適合多人專案和大型專案不友善。</p>
-<p><span>Siemens NX   </span>優點<span>:CAD</span>、<span>CAE</span>、<span>CAM</span>整合功能完整，適合精密設計和高級組建管理。</p>
-<p><span>                     <span> </span></span>缺點<span>:</span>對於單純<span><span> </span>5-bar linkage</span>繪圖不是很合適，且不如雲端方便。</p>
-<p><span>Onshape       <span> </span></span>優點<span>:</span>支援多人協作和約束參數建模靈活方便測試不同設計，也可直接機構模擬和檢視路徑。</p>
-<p><span>                     <span> </span></span>缺點<span>:</span>高級<span>CAE</span>與渲染功能弱需搭配其他工具，而且隱私受限。</p>
-<p>最後我們會選擇<span>Onshape</span>套件繪製<span>5-bar Linkage Plotter</span>的原因和考量<span><span> </span>:</span></p>
-<ol>
-<li><span></span>方便性<span>:<span> </span></span>不需要安裝和方便雲端操作，可隨時修改操作。</li>
-<li><span></span>協作性<span>:<span> </span></span>支援多人協作討論，版本清晰對於討論或展示非常實用。</li>
-<li><span></span>效率<span>: 5-bar linkage<span> </span></span>主要是機構模擬，<span>Onshape<span> </span></span>的約束與動畫功能剛好能滿足需求。</li>
-</ol>
-<p>我們使用Onshape繪製出plotclock(繪圖儀)<br/>立體視圖:</p>
-<p><img alt="" height="222" src="https://41323147.github.io/cad2025_team/images/2025-09-25_224038.png" width="468"/><img alt="" height="221" src="https://41323147.github.io/cad2025_team/images/2025-09-25_223903.png" width="467"/></p>
-<br />W3 << <a href='W3.html'>Previous</a> <a href='W7.html'>Next</a> >> W7</div>
+    <div id="tipue_search_content">W14 << <a href='W14.html'>Previous</a> <a href='W17.html'>Next</a> >> W17<br /><h1>w14問題解答</h1>
+<p>1.Webots模型能否用程式方法建立？</p>
+<p>     Ans:是可以的，Webots有提供多種透過程式碼建立、修改或動態新增場景物件的機制。</p>
+<p>   一.使用<span>Supervisor API</span>建立節點(Nodes) :Webots裡的所有場景元素都是以節點方式組織在場景樹中。</p>
+<p>   二.使用幾何節點 :Webots 支援使用<span> </span><b>IndexedFaceSet</b><span> </span>節點來定義3D網格模型，雖然建立複雜網格座標和索引列表通常不是手寫的，但節點本身是 Webots 場景（.wbt 檔案）的一部分，可透過Supervisor API 進行操作。</p>
+<p>     對於簡單幾何體 (如Box、Cylinder、Sphere)，我們可以程式化設定它們位址、大小和外觀。</p>
+<p>   三.使用PROTO檔案 : PROTO是一種Webots專用機制，允許您建立可重複使用且參數化的自訂節點，基本上就是一種模板或模組。且還可透過文字編輯器手動編寫或修改<span> </span><code>.proto</code><span> </span>檔案來定義複雜物件或機器人，這也是一種程式化建立模型的方式。</p>
+<p></p>
+<p>2.<span>有沒有辦法直接從 CAD 套件中轉出webots</span><span>的場景模型？</span></p>
+<p>    Ans:可以，但通常須經過一次轉換步驟，目前有分兩種方式 :</p>
+<p>   一.針對機器人:步驟</p>
+<ul>
+<li>
+<p data-path-to-node="19,0,1,0,0">在 SolidWorks 或 Fusion 360 中安裝 URDF Exporter 。</p>
+</li>
+<li>
+<p data-path-to-node="19,0,1,1,0">匯出成一個<span> </span><code data-index-in-node="6" data-path-to-node="19,0,1,1,0">.urdf</code><span> </span>資料夾。</p>
+</li>
+<li>
+<p data-path-to-node="19,0,1,2,0">使用 Webots 官方工具<span> </span><code data-index-in-node="15" data-path-to-node="19,0,1,2,0">urdf2webots</code><span> </span>將其轉換為 Webots 的<span> </span><code data-index-in-node="42" data-path-to-node="19,0,1,2,0">.proto</code><span> </span>格式。</p>
+</li>
+</ul>
+<p>   二.針對靜態場景：步驟</p>
+<ul>
+<li>
+<p data-path-to-node="22,0,1,0,0">從 CAD 軟體匯出為<span> </span><code data-index-in-node="12" data-path-to-node="22,0,1,0,0">.obj</code>或<span> </span><code data-index-in-node="34" data-path-to-node="22,0,1,0,0">.stl</code>。</p>
+</li>
+<li>
+<p data-path-to-node="22,0,1,1,0">關鍵優化： 在進入 Webots 前，通常需要先進 Blender 進行減面（Decimate），因為 CAD 的原始模型面數過高，會導致模擬卡頓。</p>
+</li>
+<li>
+<p data-path-to-node="22,0,1,2,0">在 Webots 中建立一個<span> </span><code data-index-in-node="15" data-path-to-node="22,0,1,2,0">Mesh</code><span> </span>節點，並指向該檔案。</p>
+</li>
+</ul>
+<p></p>
+<p>   三.雲端CAD轉換Onshape:</p>
+<p>           能夠直接透過 API 抓取雲端模型並生成 Webots 檔案，是目前最全自動化的方案。</p>
+<p><span> </span></p>
+<br />W14 << <a href='W14.html'>Previous</a> <a href='W17.html'>Next</a> >> W17</div>
         
     <!-- footer -->
       <div class="container">
