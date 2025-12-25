@@ -78,7 +78,36 @@
 <p>控制系統設計與動態模擬 :我們使用webot來進行動態模擬，這是我們匯入的經過:</p>
 <p>1.將機器人零組件轉成stl檔以便匯入webot<br/><img alt="" height="369" src="https://41323147.github.io/cad2025_team/images/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-10-30%20201812.png" width="800"/></p>
 <p>2.我們先在世界新增一個robot並且在children再接續新增Solid和Shape最後在裡面的mash把所匯出的stl檔案匯進url裡面<img alt="" height="449" src="https://41323147.github.io/cad2025_team/images/%E8%9E%A2%E5%B9%95%E6%93%B7%E5%8F%96%E7%95%AB%E9%9D%A2%202025-10-30%20202430.png" width="800"/></p>
-<p>3.由於我們在將零件檔匯入時遇到了機器人關節處需要將連動的零組件合成一個檔，且會發生零組件無法作動與移動，導致後續無法如期完成模擬，後續我們會持續完成並解決。</p><h1>W10</h1>
-<h1>W14</h1>
+<p>3.由於我們在將零件檔匯入時遇到了機器人關節處需要將連動的零組件合成一個檔，且會發生零組件無法作動與移動，導致後續無法如期完成模擬，後續我們會持續完成並解決。</p>
+<h1>W10</h1>
+<p><span> </span><a href="https://cyberbotics.com/">Webots</a><span><span> </span>是什麼？有什麼特點？ 如何進行場景模擬？ 如何用 Python 進行控制系統設計？ (</span><a href="https://cyberbotics.com/doc/guide/tutorials">Tutorial</a><span>)</span><br/><br/></p>
+<h2>w10問題解答</h2>
+<h4>1.Webots是什麼？</h4>
+<p>     webots是一款3D機器人仿真器，用於機器人建模、設計程式，且提供一個環境讓用戶能在虛擬世界模擬整個機器人動態連趕模擬。</p>
+<h4>2.Webots的特點？</h4>
+<p>   一.能夠免費開源和跨平台 二.能提供精確的剛體動力學和碰撞模擬，效果逼真。 三.豐富模型和設備，提供大量機器人模型和傳感器、執行器可自行導入。 四.提供多種語言讓使用者編寫程式 五.快速原型製作，提供環境讓使用者能快速建模、程式設計和測試模型系統。總結Webots是一個可免費在一個物理逼真、設備齊全和設計彈性高的虛擬世界，提供編寫程式和測試機器人系統模擬。</p>
+<h4>3.如何進行場景模擬？</h4>
+<p>  一. 場景建模包括 : 世界文件、節點 (如Solid、Floor、Shape、Robot)、層次結構以場景樹的形式組織、機器人配置如將所需傳感器和執行器作為子節點添加。</p>
+<p> 二.控制器設計 : 1.編寫程式 :使用Python等語言，編寫控制機器人邏輯的控制器程式  2. APL交互 :控制器透過Webots APL讀取虛擬數據，並發送給虛擬馬達。</p>
+<p> 三. 運行與交互 : 1.關聯控制器:在世界文件中將寫好的程式路徑只配給相對應的機器人節點。 2.啟動模擬:在介面中選擇時間步長，啟動仿真。 3.數據同步:時間步內。物理引擎計算世界狀態，且將傳感器數據傳輸給控制器；控制器執行邏輯後將新執行器指令傳回模擬器。</p>
+<h4>4.如何用Python進行控制系統設計？</h4>
+<h4>  一.控制器框架 : 1.導入與初始化:控制器導入controller模組  2.時間步長:定義並獲取time_step，控制循環刷新頻率  3.主循環:所有控制邏輯放在<code>while robot.step(time_step) != -1:</code><span> </span>的主循環中。</h4>
+<p>from controller import Robot</p>
+<p>1. 初始化機器人和時間步長<br/>robot = Robot()<br/>time_step = int(robot.getBasicTimeStep())</p>
+<h4>  二.設備存取與配置 : 1.使用<span> </span><code>robot.getDevice</code> 獲取機器人模型中的傳感器或馬達 2.對於傳感器，須呼叫<span> </span><code>enable(time_step)</code><span> </span>方法來數據採集。</h4>
+<p></p>
+<p># 2. 獲取馬達 (執行器)<br/>left_motor = robot.getDevice('left wheel motor')<br/>right_motor = robot.getDevice('right wheel motor')</p>
+<p>3. 獲取距離傳感器 (傳感器) 並啟用<br/>ps0 = robot.getDevice('ps0')<br/>ps0.enable(time_step)</p>
+<h4>  三.編寫控制邏輯 : 1.主循環內使用設備實例的<span> </span><code>getValue()</code><span> </span>函數讀取最新的傳感器數據 2.決策與計算:根據傳感器數據計算所需的馬達控制量 3.發送指令:使用執行器的 API 方法如馬達的<span> </span><code>setVelocity()</code><span> </span>或<span> </span><code>setPosition()</code>）將控制信號發送給虛擬機器人。</h4>
+<p></p>
+<p># 4. 在主循環內執行控制邏輯<br/>while robot.step(time_step) != -1:<br/># 讀取傳感器值<br/>distance = ps0.getValue()</p>
+<p>簡單的向前移動邏輯<br/>max_speed = 6.28<br/><br/># 發送指令<br/>left_motor.setVelocity(max_speed)<br/>right_motor.setVelocity(max_speed)<br/><br/># (如果需要避障，則會在這裡加入條件判斷和速度調整)</p>
+<h2>controllers控制器匯入示範</h2>
+<p>1.首先在Webots創立的檔案中找到controllers，在裡面先建立資料夾，並放入.py文件</p>
+<p><img alt="" height="556" src="https://41323147.github.io/cad2025_team/images/controllers.png" width="800"/></p>
+<p>2.在Webots的Robot裡找到controller，點開可以找到剛創建的.py文件，就可以輸入python進行控制了</p>
+<p><img alt="" height="425" src="https://41323147.github.io/cad2025_team/images/webots%E6%8E%A7%E5%88%B6%E5%99%A8%E9%81%B8%E5%96%AE.png" width="800"/></p>
+<p>python模擬情形</p>
+<p><img alt="" height="554" src="https://41323147.github.io/cad2025_team/images/5%20bar%20%E6%AD%A3%E6%96%B9%E5%BD%A2.gif" width="800"/></p><h1>W14</h1>
 <h1>W17</h1>
 <h1>W18</h1>
